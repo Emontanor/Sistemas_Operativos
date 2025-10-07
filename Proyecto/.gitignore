@@ -1,1 +1,3 @@
-final_animedataset.csv
+*.csv
+*.dat
+*.exe
