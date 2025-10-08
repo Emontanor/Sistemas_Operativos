@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-#define TABLE_SIZE 1000000   // tamaño del header
+#define TABLE_SIZE 100000   // tamaño del header
 #define KEY_SIZE 10          // longitud fija de la clave
 #define LINE_BUFFER 2048     // tamaño del buffer para leer líneas
 

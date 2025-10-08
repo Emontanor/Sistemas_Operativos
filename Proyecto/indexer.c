@@ -23,7 +23,7 @@ int main() {
         return 1;
     }
 
-    // -definir el hashtable con 1000000 de entradas inicializadas en -1
+    // -definir el hashtable con 100000 de entradas inicializadas en -1
     long header[TABLE_SIZE];
     for (int i = 0; i < TABLE_SIZE; i++){
         // -1 indica que el bucket está vacío
