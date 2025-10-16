@@ -10,12 +10,12 @@
 
 int fd,r;
 bool bandera=true;
-char buffer[2048],entrada[100];
+char buffer[2048],metodo[100],parametros[100];
 struct sockaddr_in cliente;
 
 int main(){
-    scanf("%s",entrada);
-    while(strcmp(entrada,"exit")!=0){
+    scanf("%s",metodo);
+    while(strcmp(metodo,"exit")!=0){
         //conexion al servidor
         fd = socket(AF_INET,SOCK_STREAM,0);
         if(fd < 0){
@@ -36,25 +36,38 @@ int main(){
             return 1;
         }
 
-        //enviar parametros para consulta
-        r = send(fd,entrada,sizeof(entrada),0);
-
-        //recibir respuesta
-        //recibir_respuesta_prueba(fd, r);
-        while(r = recv(fd, buffer, sizeof(buffer), 0)){
-            if(r < 0){
-                perror("error recv");
-                break;
-            }else{
-                buffer[r] = 0;
-                printf("%s",buffer);
+        //enviar metodo
+        r = send(fd,metodo,sizeof(metodo),0);
+        //recibir validacion
+        r = recv(fd, buffer, sizeof(buffer), 0);
+        if(r < 0){
+            perror("error recv");
+            break;
+        }else{
+            buffer[r] = 0;
+            printf("%s\n",buffer);
+            if(strcmp(buffer,"Metodo no soportado")!=0){
+                //recoger parametros
+                scanf("%s",parametros);
+                //enviar parametros para consulta
+                r = send(fd,parametros,sizeof(parametros),0);
+                //recibir respuesta
+                while(r = recv(fd, buffer, sizeof(buffer), 0)){
+                    if(r < 0){
+                        perror("error recv");
+                        break;
+                    }else{
+                        buffer[r] = 0;
+                        printf("%s",buffer);
+                    }
+                }
             }
         }
 
         close(fd);
         printf("Conexion cerrada\n\n");
         
-        scanf("%s",entrada);
+        scanf("%s",metodo);
     }
     return 0;
 }
