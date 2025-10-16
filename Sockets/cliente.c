@@ -31,12 +31,12 @@ int main(){
         return 1;
     }
 
-    //enviar mensaje
+    //recibir mensaje
     r = recv(fd,buffer,30,0);
     buffer[r] = 0;
     printf("Mensaje del servidor: %s\n",buffer);
 
-    //recibir mensaje
+    //enviar mensaje
     r = send(fd,"hola servidor",13,0);
     if(r < 0){
         perror("send");
