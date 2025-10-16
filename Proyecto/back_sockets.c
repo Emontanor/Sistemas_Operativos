@@ -262,7 +262,7 @@ int main(){
             buffer[r] = 0;
             printf("Metodo: %s\n", buffer);
             if (strcmp(buffer, "SEARCH") == 0) {
-                send(fd2,"Metodo SEARCH aceptado\n",24,0);
+                send(fd2,"Metodo SEARCH aceptado, esperando parametros:\n",24,0);
                 r = recv(fd2, buffer, sizeof(buffer), 0);
                 if(r == 0){
                     printf("Conexion terminada");
@@ -278,7 +278,7 @@ int main(){
                 sercher(parametros, fd2);
                 printf("Busqueda finalizada\n\n");
             } else if (strcmp(buffer, "INSERT") == 0) {
-                send(fd2,"Metodo INSERT aceptado\n",24,0);
+                send(fd2,"Metodo INSERT aceptado, esperando parametros:\n",24,0);
                 r = recv(fd2, buffer, sizeof(buffer), 0);
                 if(r == 0){
                     printf("Conexion terminada");
