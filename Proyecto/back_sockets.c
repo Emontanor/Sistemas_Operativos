@@ -189,6 +189,7 @@ void inserter(char *parametros, int fd_out){
     send(fd_out,"Insercion completada\n\n",22,0);
     char busqueda[100];
     snprintf(busqueda,sizeof(busqueda), "%s,-,-", new_key);
+    //close(fd_out);
     sercher(busqueda, fd_out);
 
     return;

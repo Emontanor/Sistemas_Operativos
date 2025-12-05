@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <unistd.h>  // sleep
 
-#define NUM_HILOS 50
+#define NUM_HILOS 10
 pthread_mutex_t mutex;
 
 struct datos_tipo {

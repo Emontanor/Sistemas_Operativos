@@ -13,7 +13,7 @@ int main(){
         perror("shmget");
         exit(1);
     }
-    double *ap = shmat(shmId, 0, 0); //Adjuntar memoria compartida
+    int *ap = shmat(shmId, 0, 0); //Adjuntar memoria compartida
     if(ap == (void*)-1){
         perror("shmat");
         exit(1);
@@ -21,10 +21,10 @@ int main(){
 
     pid_t pid = fork();
     if(pid == 0){
-        *ap = 3.1415926535;
+        *ap = 129;
     }else{
         wait(NULL);
-        printf("Valor desde el hijo: %lf\n", *ap);
+        printf("Valor desde el hijo: %d\n", *ap);
     }
 
     shmdt(ap);
